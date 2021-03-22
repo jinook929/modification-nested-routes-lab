@@ -1,9 +1,24 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
-  <%= f.label :artist_name %>
-  <%= f.text_field :artist_name %>
-  <br />
+
+  <%#= f.label :artist, "Artitst" %>
+  <%# from artists_helper.rb w/ artist_name label %>
+  <%= artist_field(f, @artist, @artists) %>
+  <%# binding.pry %>
+  <datalist id="artist_name">
+    <%= options_for_select(@artists.map {|artist| artist.name}) %>
+
+  <% if nil %>
+    <% @artists.each do |artist| %>
+      <option value="<%= artist.name%>"></option>
+    <% end %>
+  <% end %>
+
+  </datalist>
 
   <%= f.submit %>
 <% end %>
+
+Q1. artist label from artists_helper file??? (a way to get 2 lines working? just in erb file?)
+Q2. how to have datalist working in browser?
